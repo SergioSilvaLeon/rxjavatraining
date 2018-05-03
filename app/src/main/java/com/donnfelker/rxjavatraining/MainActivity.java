@@ -19,12 +19,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Observable
-                .fromCallable(new Callable<String>() {
-                    @Override
-                    public String call() throws Exception {
-                        wait(5 * 1000);
-                        return "Hello World!";
-                    }
+                .fromCallable(() -> {
+                    wait(5 * 1000);
+                    return "Hello World!";
                 })
                 .subscribeOn(Schedulers.computation())
                 .observeOn(Schedulers.io())
